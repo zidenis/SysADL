@@ -79,6 +79,47 @@ package RTCSystemComponents {
 	import RTCSystemPorts;
 	import SysADL.types;
 	import RTCSystemConnectors;
+
+	component def RTCSystem {
+	configuration {
+				}
+			}
+	component def PresenceSensorCP {
+		ports detected : RTCSystemPorts.PresenceOPT {
+		}
+	}
+	component def HeaterCP {
+		ports controller : RTCSystemPorts.CommandIPT {
+		}
+	}
+	component def CoolerCP {
+		ports controller : RTCSystemPorts.CommandIPT {
+		}
+	}
+	component def UserInterfaceCP {
+		ports desired : RTCSystemPorts.CTemperatureOPT {
+		}
+	}
+	component def TemperatureSensorCP {
+		ports current : RTCSystemPorts.FTemperatureOPT {
+		}
+	}
+	component def RoomTemperatureControllerCP {
+		ports 
+			userTemp : RTCSystemPorts.CTemperatureIPT {
+		}
+			detected : RTCSystemPorts.PresenceIPT {
+		}
+			cooling : RTCSystemPorts.CommandOPT {
+		}
+			heating : RTCSystemPorts.CommandOPT {
+		}
+			localTemp1 : RTCSystemPorts.CTemperatureIPT {
+		}
+			localTemp2 : RTCSystemPorts.CTemperatureIPT {
+		}
+		
+	}
 }
 
 package RTCSystemPorts {
