@@ -82,8 +82,61 @@ package RTCSystemComponents {
 
 	component def RTCSystem {
 	configuration {
+		components:
+			S1 : TemperatureSensorCP {
+				using ports current : RTCSystemPorts.FTemperatureOPT {
 				}
 			}
+			S2 : TemperatureSensorCP {
+				using ports current : RTCSystemPorts.FTemperatureOPT {
+				}
+			}
+			PresenceSensorCP : PresenceSensorCP {
+				using ports detected : RTCSystemPorts.PresenceOPT {
+				}
+			}
+			UserInterfaceCP : UserInterfaceCP {
+				using ports desired : RTCSystemPorts.CTemperatureOPT {
+				}
+			}
+			HeaterCP : HeaterCP {
+				using ports controller : RTCSystemPorts.CommandIPT {
+				}
+			}
+			CoolerCP : CoolerCP {
+				using ports controller : RTCSystemPorts.CommandIPT {
+				}
+			}
+			RoomTemperatureControllerCP : RoomTemperatureControllerCP {
+				using ports 
+					userTemp : RTCSystemPorts.CTemperatureIPT {
+					}
+					detected : RTCSystemPorts.PresenceIPT {
+					}
+					cooling : RTCSystemPorts.CommandOPT {
+					}
+					heating : RTCSystemPorts.CommandOPT {
+					}
+					localTemp1 : RTCSystemPorts.CTemperatureIPT {
+					}
+					localTemp2 : RTCSystemPorts.CTemperatureIPT {
+					}
+				}
+		connectors:
+			c1 : RTCSystemConnectors.FahrenheitToCelsiusCN 
+				bindings S1.current = RoomTemperatureControllerCP.localTemp1 
+			c2 : RTCSystemConnectors.FahrenheitToCelsiusCN 
+				bindings S2.current = RoomTemperatureControllerCP.localTemp2 
+			uc : RTCSystemConnectors.CTemperatureCN
+				bindings UserInterfaceCP.desired = RoomTemperatureControllerCP.userTemp 
+			pc : RTCSystemConnectors.DetectPresenceCN 
+				bindings PresenceSensorCP.detected = RoomTemperatureControllerCP.detected
+			cc1 : RTCSystemConnectors.SendCommandCN 
+				bindings RoomTemperatureControllerCP.heating = HeaterCP.controller 
+			cc2 : RTCSystemConnectors.SendCommandCN 
+				bindings RoomTemperatureControllerCP.cooling = CoolerCP.controller
+		}
+	}
 	component def PresenceSensorCP {
 		ports detected : RTCSystemPorts.PresenceOPT {
 		}
