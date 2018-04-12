@@ -40,6 +40,39 @@ package SysADL.types {
 
 package RTCSystemConnectors {
 	import RTCSystemPorts;
+	
+	connector def FahrenheitToCelsiusCN {
+		participants 
+			~ source : RTCSystemPorts.FTemperatureOPT {
+		}
+			~ destination : RTCSystemPorts.CTemperatureIPT {
+		}
+		flows SysADL.types.FahrenheitTemp from source to destination
+	}
+	connector def CTemperatureCN {
+		participants 
+			~ source : RTCSystemPorts.CTemperatureOPT {
+		}
+			~ destination : RTCSystemPorts.CTemperatureIPT {
+		}
+		flows SysADL.types.CelsiusTemp from source to destination
+	}
+	connector def DetectPresenceCN {
+		participants 
+			~ source : RTCSystemPorts.PresenceOPT {
+		}
+			~ destination : RTCSystemPorts.PresenceIPT {
+		}
+		flows SysADL.types.Boolean from source to destination
+	}
+	connector def SendCommandCN {
+		participants 
+			~ source : RTCSystemPorts.CommandOPT {
+		}
+			~ destination : RTCSystemPorts.CommandIPT {
+		}
+		flows SysADL.types.Command from source to destination
+	}
 }
 
 package RTCSystemComponents {
