@@ -1,4 +1,5 @@
 Model SysADLArchitecture;
+
 package SysADL.types {
 	value type Int {
 	}
@@ -10,15 +11,43 @@ package SysADL.types {
 	}
 	value type Real {
 	}
+	dimension Temperature
+	unit Celsius {
+		dimension = Temperature 
+	} 
+	unit Fahrenheit {
+		dimension = Temperature 
+	} 
+	value type Temp {
+		dimension = Temperature
+	}
+	value type CelsiusTemp extends Temp {
+		unit = Celsius dimension = Temperature
+	}
+	value type FahrenheitTemp extends Temp {
+		unit = Fahrenheit dimension = Temperature
+	}
+	enum Command {
+		On,
+		Off
+	}
+	datatype Commands {
+		attributes 
+			cooler : Command 
+			heater : Command
+	}
 }
+
 package RTCSystemConnectors {
 	import RTCSystemPorts;
 }
+
 package RTCSystemComponents {
 	import RTCSystemPorts;
 	import SysADL.types;
 	import RTCSystemConnectors;
 }
+
 package RTCSystemPorts {
 	import SysADL.types;
 }
