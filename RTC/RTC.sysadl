@@ -50,4 +50,29 @@ package RTCSystemComponents {
 
 package RTCSystemPorts {
 	import SysADL.types;
+
+	port def FTemperatureOPT {
+		flow out SysADL.types.FahrenheitTemp
+	}
+	port def FTemperatureIPT {
+		flow in SysADL.types.FahrenheitTemp
+	}
+	port def CTemperatureOPT {
+		flow out SysADL.types.CelsiusTemp
+	}
+	port def CTemperatureIPT {
+		flow in SysADL.types.CelsiusTemp
+	}
+	port def CommandOPT {
+		flow out SysADL.types.Command
+	}
+	port def CommandIPT {
+		flow in SysADL.types.Command
+	}
+	port def PresenceOPT {
+		flow out SysADL.types.Boolean
+	}
+	port def PresenceIPT {
+		flow in SysADL.types.Boolean
+	}
 }
