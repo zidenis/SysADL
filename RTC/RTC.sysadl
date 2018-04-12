@@ -11,3 +11,14 @@ package SysADL.types {
 	value type Real {
 	}
 }
+package RTCSystemConnectors {
+	import RTCSystemPorts;
+}
+package RTCSystemComponents {
+	import RTCSystemPorts;
+	import SysADL.types;
+	import RTCSystemConnectors;
+}
+package RTCSystemPorts {
+	import SysADL.types;
+}
