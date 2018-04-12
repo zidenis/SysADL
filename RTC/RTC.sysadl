@@ -173,6 +173,16 @@ package RTCSystemComponents {
 		}
 		
 	}
+	activity def CalculateAverageTemperatureAC ( t1 : SysADL.types.Temp, t2 : SysADL.types.Temp ) : ( averageTemp : SysADL.types.Temp ) {
+		body {
+			actions : cavg : CalculeAverageTemperatureAN {
+				using pins t2 : SysADL.types.Temp t1 : SysADL.types.Temp
+			}
+			delegate t2 to cavg.t2 delegate t1 to cavg.t1 delegate averageTemp to cavg
+		}
+	}
+	action def CalculeAverageTemperatureAN ( t1 : SysADL.types.Temp, t2 : SysADL.types.Temp ) : SysADL.types.Temp {
+	}
 }
 
 package RTCSystemPorts {
